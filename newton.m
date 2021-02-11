@@ -1,5 +1,9 @@
 function x=newton(f,df,x0,rtol,maxit)
 % newton(f,df,x0)
+disp('solving f(x)=0')
+f
+disp('derivative of f is')
+df
 x = x0;
 a=x;b=x;
 clf
