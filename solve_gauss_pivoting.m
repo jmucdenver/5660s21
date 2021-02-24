@@ -7,9 +7,11 @@ function v=solve_gauss_pivoting(A,b)
     end
     pr='>'
     clc
-    A0=A
-    b0=b
-    M=eye(n)
+    disp('Initial matrix and vector')
+    A0=A;
+    b0=b;
+    A,b
+    % M=eye(n)
     input(pr);
     for i=1:n-1
         % clc
@@ -18,9 +20,9 @@ function v=solve_gauss_pivoting(A,b)
         ii=ii(1); % if there are more take the first one
         if ii~=i,
             fprintf('swapping rows %i and %i\n',i,ii)
-            input(pr);
             A=swap_rows(A,i,ii)
             b=swap_rows(b,i,ii)
+            input(pr);
         end
         for j=i+1:n
             m   = A(j,i)/A(i,i)
@@ -34,8 +36,10 @@ function v=solve_gauss_pivoting(A,b)
     input(pr);
     v=zeros(n,1); % preallocate as column
     v(n)=b(n)/A(n,n)
-    for i=n-1:-1:1
+    for i=n:-1:1
         v, A, b
+        fprintf(['solving for v(',num2str(i),')\n'])
+        input(pr);
         v(i) = (b(i) - A(i,i+1:end)*v(i+1:end))/A(i,i)
         input(pr);
     end

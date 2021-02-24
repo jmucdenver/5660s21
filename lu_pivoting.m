@@ -52,7 +52,7 @@ end
             % fprintf('subtracting %g times row %g from row %g\n',L(j,i),i,j)
             U(j,i:n) = U(j,i:n)-L(j,i)*U(i,i:n);    
         end
-        % clc, 
+        clc, 
         fprintf('eliminated the entries under U(%i,%i)\n',i,i)
         U,L,if(dopivot),P,end
         input(pr)
