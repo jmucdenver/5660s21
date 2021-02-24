@@ -15,11 +15,18 @@ end
     pr='>';
     input(pr);
     clc
-    disp('Initial matrices')
+    % disp('Initial matrices')
     P=eye(n);
     U=A;
     L=zeros(n);
-    U,L,if(dopivot),P,end
+    clc
+    if(dopivot)
+        disp('Initialize U=A, L=0, P=I')
+        U,L,P,
+    else
+        disp('Initialize U=A, L=0')
+        U,L,
+    end
     input(pr);
     for i=1:n-1
         col=U(i:end,i);
@@ -39,9 +46,11 @@ end
             input(pr)
         else
             clc
-            % fprintf('no swapping needed under U(%i,%i)\n',i,i)
-            U,L,if(dopivot),P,end
-            input(pr)
+            if dopivot
+                fprintf('no swapping needed under U(%i,%i)\n',i,i)
+                U,L,P
+                input(pr)
+            end
         end
         clc, 
         fprintf('eliminating the entries under U(%i,%i), storing multipliers\n',i,i)
@@ -49,8 +58,11 @@ end
         input(pr);
         for j=i+1:n
             L(j,i)   = U(j,i)/U(i,i);
-            % fprintf('subtracting %g times row %g from row %g\n',L(j,i),i,j)
-            U(j,i:n) = U(j,i:n)-L(j,i)*U(i,i:n);    
+            clc
+            fprintf('subtracting %g times row %g from row %g\n',L(j,i),i,j)
+            U,L,if(dopivot),P,end
+            U(j,i:n) = U(j,i:n)-L(j,i)*U(i,i:n);   
+            input(pr)
         end
         clc, 
         fprintf('eliminated the entries under U(%i,%i)\n',i,i)
@@ -58,8 +70,12 @@ end
         input(pr)
     end
     L=L+eye(n);
-    clc,disp('result')
-    U,L,P
-    disp('should have P*A = L*U')
+    clc,disp('adding I to L')
+    U,L,
+    if(dopivot),
+        P,    disp('should have P*A = L*U')
+    else
+        disp('should have A = L*U')
+    end
     err = norm(P*A - L*U,inf)
 end
