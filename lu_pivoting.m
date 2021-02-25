@@ -72,6 +72,7 @@ end
     L=L+eye(n);
     clc,disp('adding I to L')
     U,L,
+    input(pr)
     if(dopivot),
         P,    disp('should have P*A = L*U')
     else
