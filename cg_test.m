@@ -26,7 +26,7 @@ switch matrix
         error(['unknown matrix type ',matrix])            
 end
 P = @(x)x
-%[x,res]=cg_ref(@(x)A*x,b,x,tol,maxit);
+[x,res]=cg_ref(@(x)A*x,b,x,tol,maxit);
 [x,res]=pcg_ref(@(x)A*x,P,b,x,tol,maxit);
 r=b-A*x;
 res_norm=max(abs(r))
