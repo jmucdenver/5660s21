@@ -5,5 +5,5 @@ A=eye(2)
 x = [1;1];
 
 for i=1:10
-[x,A]=broyden(f,x,A)
+    [x,A]=broyden(f,x,A)
 end
