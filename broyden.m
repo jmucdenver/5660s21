@@ -1,5 +1,5 @@
 function [xnew,Anew]=broyden(f,x,A)
-% broyden method
+% one iteration of broyden method
     err = norm(f(x))
     xnew = x - A\f(x);  % A is initial approximation to Df
     delta = xnew-x;
