@@ -1,7 +1,8 @@
-function runge
+function sineint
 f =@(x)1./(1+12*x.*x)
+f = @(x) sin(x)
 nmax=20
-equi=0
+equi=1
 if equi
 for n=2:nmax
     xlist = linspace(-1,1,n)
