@@ -7,8 +7,14 @@ function bezierdraw
 plot([-1 1],[0,0],'k',[0 0],[-1 1],'k');hold on
 t=0:.02:1;
 [x,y]=ginput(1);            % get one mouse click
-while(0 == 0)        
-  [xnew,ynew] = ginput(3);  % get three mouse clicks
+plot(x,y,'o')
+xnew=zeros(3,1);
+ynew=zeros(3,1);
+while(0 == 0)
+  for i=1:3
+    [xnew(i),ynew(i)] = ginput(1);  % get three mouse clicks
+    plot(xnew(i),ynew(i),'x')
+  end
   if length(xnew) < 3
     break                   % if return pressed, terminate
   end
